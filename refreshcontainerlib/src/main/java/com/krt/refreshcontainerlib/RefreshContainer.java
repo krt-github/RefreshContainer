@@ -23,7 +23,7 @@ import com.krt.refreshcontainerlib.extra.view.OrdinaryRefreshView;
 
 /**
  * Created by zehong.tang on 2017/4/6.<br>
- * 为任意 View 提供垂直方向上的刷新和加载更多能力的容器，仅支持一个子 View(Content view) ，<br>
+ * 为任意 View 提供垂直方向上的刷新和加载更多能力的容器，仅支持一个直接子 View(Content view) ，<br>
  * 刷新风格和刷新时展示的 View 均可自定义。<br>
  * {@link IRefreshLoadMoreCallback} 通知外部刷新或加载<br>
  * {@link IRefreshStyle} 定制刷新风格<br>
