@@ -18,4 +18,20 @@ can only support one direct child.The activity that instantiates this view shoul
 add an IRefreshLoadMoreCallback to be notified whenever the swipe to refresh or
 load gesture is completed.
 
-NOTICE: You must call {@link #execute()} bring into effect.
+**NOTICE:** You must call **execute()** bring into effect.
+
+#How it looks
+![Ordinary](./gif/Ordinary.gif)
+![Parallax](./gif/Parallax.gif)
+![Android](./gif/Android.gif)
+![Circle](./gif/Circle.gif)
+![Fly](./gif/Fly.gif)
+
+#Features
+...
+
+#How to use
+...
+
+#
+Apache-2.0
