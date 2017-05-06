@@ -21,20 +21,19 @@ load gesture is completed.
 **NOTICE:** You must call **execute()** bring into effect.
 
 # How it looks
-![Ordinary](./gif/Ordinary.gif)
+<div align=center>
+	<img src="./gif/Ordinary.gif" width="280" height="500"/>
+	<img src="./gif/Parallax.gif" width="280" height="500"/>
+</div>
 
+<div>
+	<img src="./gif/Android.gif" width="280" height="500"/>
+	<img src="./gif/Circle.gif" width="280" height="500"/>
+	<img src="./gif/Fly.gif" width="280" height="500"/>
+</div>
 
-![Parallax](./gif/Parallax.gif)
-
-
-![Android](./gif/Android.gif)
-
-
-![Circle](./gif/Circle.gif)
-
-
-![Fly](./gif/Fly.gif)
-
+- Circle : [https://github.com/tuesda/CircleRefreshLayout](https://github.com/tuesda/CircleRefreshLayout)
+- Fly : [https://github.com/race604/FlyRefresh](https://github.com/race604/FlyRefresh)
 
 # Features
 ...
@@ -42,5 +41,5 @@ load gesture is completed.
 # How to use
 ...
 
-# 
+# License
 Apache-2.0
