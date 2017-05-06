@@ -20,18 +20,27 @@ load gesture is completed.
 
 **NOTICE:** You must call **execute()** bring into effect.
 
-#How it looks
+# How it looks
 ![Ordinary](./gif/Ordinary.gif)
+
+
 ![Parallax](./gif/Parallax.gif)
+
+
 ![Android](./gif/Android.gif)
+
+
 ![Circle](./gif/Circle.gif)
+
+
 ![Fly](./gif/Fly.gif)
 
-#Features
+
+# Features
 ...
 
-#How to use
+# How to use
 ...
 
-#
+# 
 Apache-2.0
