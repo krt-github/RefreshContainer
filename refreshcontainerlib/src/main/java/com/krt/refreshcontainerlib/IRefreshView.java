@@ -8,7 +8,7 @@ package com.krt.refreshcontainerlib;
 public interface IRefreshView {
     /**
      * 当 {@link com.krt.refreshcontainerlib.RefreshContainer} 离开 {@link com.krt.refreshcontainerlib.RefreshContainer#STATE_IDLE} <br>
-     * 状态时回调，用来告知 refreshableView 当前的状态信息，根据此信息更新内部 view (如 文字、图片、透明度等)<br/>
+     * 状态时回调，用来告知 refreshableView 当前的状态信息，根据此信息更新内部 view (如 文字、图片、透明度等)<br>
      * 注意同一种状态下多次调用的情况，避免重复执行某些逻辑
      * @param state {@link com.krt.refreshcontainerlib.RefreshContainer} 当前状态
      * @param pullDistance 滑动距离(View 真实移动距离，非手指滑动距离)

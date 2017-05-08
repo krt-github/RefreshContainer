@@ -16,8 +16,8 @@ public abstract class BaseRefreshStyle implements IRefreshStyle {
     private int mMaxDistance = Integer.MAX_VALUE;
     private float mDamping = 0.5f;
     /**
-     * 0: original position, no move<br/>
-     * negative: refresh view "show"<br/>
+     * 0: original position, no move<br>
+     * negative: refresh view "show"<br>
      * positive: load more view "show"
      */
     protected int mMoveDistance;

@@ -67,7 +67,8 @@ public class ParallaxRefreshStyle extends BaseRefreshStyle{
 
     /**
      * 产生视差滞后的效果，滞后的 View 移动距离为正常值 * mParallaxMultiplier
-     * 有效值范围 [0, 1] => [完全不动，完全跟随]
+     * 有效值范围 [0, 1] = [完全不动，完全跟随]
+     * @param value multiplier
      */
     public void setParallaxMultiplier(float value){
         if(value < 0 || value > 1)

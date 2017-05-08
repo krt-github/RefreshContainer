@@ -347,7 +347,7 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
     }
 
     /**
-     * 外部加载任务完成，使用该方法通知本控件更新状态。<br/>
+     * 外部加载任务完成，使用该方法通知本控件更新状态。<br>
      * @param runnable 若外部控件的加载结果需要在本控件回到 {@link #STATE_IDLE} 后再呈现，可使用该参数
      *                 封装呈现逻辑。
      */
