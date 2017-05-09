@@ -65,7 +65,7 @@ public class DemoActivity extends AppCompatActivity {
         mRefreshContainer = (RefreshContainer) findViewById(R.id.refresh_container);
         mRefreshContainer.setDuration(320)
                 .setInterpolator(new DecelerateInterpolator())
-//                .setRefreshChecker(new IRefreshChecker()) //子 View 不支持嵌套滑动需要设置 checker
+//                .setRefreshChecker(new IRefreshChecker()) //If child view unsupported nested scroll, uncomment this line.
                 .setRefreshLoadMoreCallback(new IRefreshLoadMoreCallback() {
                     public void onRefresh() {simulateTask(-1);}
                     public void onLoadMore() {simulateTask(mAdapter.getItemCount());}

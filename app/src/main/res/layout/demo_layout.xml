@@ -9,6 +9,6 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFF" />
+        android:background="#FFF" /> <!--Maybe you need cover your refresh view, e.g. parallax style-->
 
 </com.krt.refreshcontainerlib.RefreshContainer>
