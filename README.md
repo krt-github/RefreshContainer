@@ -1,24 +1,9 @@
 # RefreshContainer
 RefreshContainer 是一个可以为任意 View 提供垂直方向上的刷新和加载更多能力的容器，
-仅支持一个直接子 View(Content view)。
-与其他已有的刷新控件最大不同为刷新风格和刷新时展示的 View 均可自定义。
+可自定义任意刷新风格(包括视图和交互逻辑)。
 
-通过 IRefreshView 获得本控件的刷新状态信息来更新自定义的刷新和加载 view 中的状态。
-使用时注意不要用 addView 的方法添加 view，使用 setRefreshView(View)、setLoadMoreView(View)、
-setContentView(View) 设置的 view 才会被布局。ContentView 亦可在 xml 文件中以直接子元素的形式设置
-注意一定要调用 execute() 使所有配置生效。
-
-The RefreshContainer can customize your refresh style and refresh view, see
-IRefreshStyle, IRefreshView.
-
-The RefreshContainer should be used whenever the user can refresh and/or load the
-contents of a view via a vertical swipe gesture. This container should be made
-the parent of the view that will be refreshed as a result of the gesture and
-can only support one direct child.The activity that instantiates this view should
-add an IRefreshLoadMoreCallback to be notified whenever the swipe to refresh or
-load gesture is completed.
-
-**NOTICE:** You must call **execute()** bring into effect.
+The RefreshContainer is An awesome widget provide refresh and
+load capabilities for any view, you can customize any style.
 
 # How it looks
 <div align=center>
@@ -36,10 +21,53 @@ load gesture is completed.
 - Fly : [https://github.com/race604/FlyRefresh](https://github.com/race604/FlyRefresh)
 
 # Features
-...
+- Support refresh and load more
+- Support customize any interact style
+- Support customize refresh view and load more view
+- Support nested scroll
+- Work with any view
 
 # How to use
-...
+Add Gradle dependency:
+```
+dependencies {
+    compile 'com.krt:refreshcontainerlib:1.0.0'
+}
+```
+An example of basic usage in `layout.xml`:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<com.krt.refreshcontainerlib.RefreshContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Any view
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF" /><!--Maybe you need cover your refresh view, e.g. parallax style-->
+
+</com.krt.refreshcontainerlib.RefreshContainer>
+```
+Configure:
+```
+    mRefreshContainer = (RefreshContainer) findViewById(R.id.refresh_container);
+    mRefreshContainer.setDuration(320)
+//            .setRefreshChecker(IRefreshChecker) //If child view unsupported nested scroll, uncomment this line.
+            .setRefreshLoadMoreCallback(new IRefreshLoadMoreCallback() {
+                public void onRefresh() { do refresh }
+                public void onLoadMore() { do load more }
+            })
+            .setRefreshView(IRefreshView)
+            .setLoadMoreView(IRefreshView)
+            .setRefreshStyle(IRefreshStyle)
+            .execute(); //Very important!! Just execute configuration, not refresh
+```
+When work complete or be canceled:
+```
+mRefreshContainer.setWorkCompleted();
+```
+For more, please turn to the source code.
+
 
 # License
-Apache-2.0
+`RefreshContainer` is available under the Apache-2.0 license.
