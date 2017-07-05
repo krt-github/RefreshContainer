@@ -342,6 +342,7 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
     }
 
     public void setWorkCompleted(){
+        forceSettle = true;
         setWorkState(STATE_COMPLETE);
         updateUI();
     }
@@ -357,9 +358,9 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        layoutView(left, top, right, bottom);
-        this.right = right;
-        this.bottom = bottom;
+        this.right = right - left;
+        this.bottom = bottom - top;
+        layoutView(getPaddingLeft(), getPaddingTop(), this.right, this.bottom);
     }
 
     protected void onFinishInflate() {
@@ -806,8 +807,8 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
     }
 
     /**
-     * 强制 settle 。避免在 setWorkState(STATE_WORK) 后某些异常情况导致不能通过 onRefresh 、onLoadMore<br>
-     * 的方式结束 work ，将使用 setWorkCompleted() 强制完成 work。在 smoothScrollYTo 中若 mScroller.isRunning()<br>
+     * 强制 settle 。避免在 setWorkState(STATE_WORK) 后立即调用 setWorkCompleted() 而无法结束。<br>
+     * 在 smoothScrollYTo 中若 mScroller.isRunning()<br>
      * 则会 isCanceled = true ，导致 scroll 完成后无法进入 IDLE ，使用 forceSettle 处理这种情况。<br><br>
      *
      * 针对 (null == mRefreshLoadMoreCallback || null == isPullDown) 的情况<br>

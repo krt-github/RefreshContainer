@@ -31,7 +31,7 @@ load capabilities for any view, you can customize any style.
 Add Gradle dependency:
 ```
 dependencies {
-    compile 'com.krt:refreshcontainerlib:1.0.0'
+    compile 'com.krt:refreshcontainerlib:1.0.1'
 }
 ```
 An example of basic usage in `layout.xml`:
