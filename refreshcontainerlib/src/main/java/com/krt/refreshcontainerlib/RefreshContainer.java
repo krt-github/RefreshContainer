@@ -332,6 +332,7 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
             return;
 
         isPullDown = true;
+        mRefreshView.setVisibility(View.VISIBLE);
         setWorkState(STATE_PREPARE_WORK);
         if(animation) {
             smoothScrollYTo(0, -getRefreshThreshold());
