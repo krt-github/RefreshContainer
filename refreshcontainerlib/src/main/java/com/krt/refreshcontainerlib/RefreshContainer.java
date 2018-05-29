@@ -633,6 +633,11 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
                 }
                 break;
             case STATE_WORK: //处理在 work 状态时，再次下拉或上拉的情况
+                if(getMoveDistance() == (isPullDown ? -getRefreshThreshold() : getLoadMoreThreshold())){
+                    //在 work 状态，点击子 view 嵌套滑动时会先调用 onStopNestedScroll 一次(未知原因)
+                    //导致 mScroller.isRunning() 为 true，在 dispatchTouchEvent 中丢失掉一些滑动数据
+                    return;
+                }
                 break;
         }
 
