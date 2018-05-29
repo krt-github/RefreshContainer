@@ -343,9 +343,21 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
     }
 
     public void setWorkCompleted(){
-        forceSettle = true;
+        int oldWorkState = getWorkState();
         setWorkState(STATE_COMPLETE);
-        updateUI();
+
+        //如果在 mRefreshLoadMoreCallback 中直接 setWorkCompleted()
+        //则需要延迟 updateUI
+        //因为这种情况下在 smoothScrollYTo 中 mScroller.isRunning() 为 true，导致 onSettleFinish 内旁路
+        if(STATE_PREPARE_WORK == oldWorkState){
+            post(new Runnable() {
+                public void run() {
+                    updateUI();
+                }
+            });
+        }else{
+            updateUI();
+        }
     }
 
     /**
@@ -807,38 +819,29 @@ public class RefreshContainer extends ViewGroup implements NestedScrollingParent
         mRunnableWhenCycleEnd = null;
     }
 
-    /**
-     * 强制 settle 。避免在 setWorkState(STATE_WORK) 后立即调用 setWorkCompleted() 而无法结束。<br>
-     * 在 smoothScrollYTo 中若 mScroller.isRunning()<br>
-     * 则会 isCanceled = true ，导致 scroll 完成后无法进入 IDLE ，使用 forceSettle 处理这种情况。<br><br>
-     *
-     * 针对 (null == mRefreshLoadMoreCallback || null == isPullDown) 的情况<br>
-     * 已做过处理，真实环境中应该不会出现上述情况。
-     */
-    private boolean forceSettle = false;
     private void onSettleFinish(){
-        if(!forceSettle && isCanceled){
+        if(isCanceled){
             isCanceled = false;
             return;
         }
-
-        isCanceled = false;
-        forceSettle = false;
 
         switch(getWorkState()){
             default:
                 return;
             case STATE_PREPARE_WORK:
-                setWorkState(STATE_WORK);
                 if(null == mRefreshLoadMoreCallback || null == isPullDown) {
                     setWorkCompleted();
-                    forceSettle = true;
                     break;
                 }
                 if(isPullDown)
                     mRefreshLoadMoreCallback.onRefresh();
                 else
                     mRefreshLoadMoreCallback.onLoadMore();
+                //如果在 mRefreshLoadMoreCallback 中直接 setWorkCompleted()
+                //已经将 workState 设置为 STATE_COMPLETE, 则不能再 setWorkState(STATE_WORK)
+                if(STATE_PREPARE_WORK == getWorkState()) {
+                    setWorkState(STATE_WORK);
+                }
                 break;
             case STATE_COMPLETE: setWorkState(STATE_IDLE);
                 break;
